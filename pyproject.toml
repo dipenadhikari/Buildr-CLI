@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "buildr-cli"
+version = "0.2.0"
+description = "A safe, small terminal assistant for scaffolding local Python projects."
+readme = "README.md"
+requires-python = ">=3.12,<3.15"
+authors = [{name = "Dipendra Adhikari"}]
+dependencies = [
+  "openai>=2,<3",
+  "python-dotenv>=1,<2",
+  "rich>=14,<16",
+  "typer>=0.20,<1",
+]
+
+[project.scripts]
+buildr = "buildr_cli.main:app"
+
+[dependency-groups]
+dev = [
+  "pytest>=8,<10",
+  "pytest-cov>=6,<8",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["buildr_cli*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
